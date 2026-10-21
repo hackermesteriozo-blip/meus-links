@@ -1,326 +1,349 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b0912">
-  <meta name="description" content="MatrysArts PRO — fotos de perfil, brasões, banners, capas e kits de artes digitais personalizadas.">
-  <meta property="og:title" content="MatrysArts PRO">
-  <meta property="og:description" content="Sua ideia. Sua identidade. Sua arte.">
-  <meta property="og:type" content="website">
-  <title>MatrysArts PRO | Artes Digitais</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08030f">
+  <meta name="description" content="MatrysArts — Artes digitais, design e contato.">
+  <title>MatrysArts | Links Oficiais</title>
 
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     :root {
-      --bg:#0b0912; --panel:#151221; --text:#f7f4ff;
-      --muted:#b9b1ca; --purple:#a56aff; --pink:#ff58c8;
-      --border:#ffffff1c;
-      --gradient:linear-gradient(115deg,var(--purple),var(--pink));
+      --bg: #08030f;
+      --purple: #8b2cff;
+      --pink: #ed35ff;
+      --text: #ffffff;
+      --muted: #c5afd9;
     }
-    * { box-sizing:border-box }
-    html { scroll-behavior:smooth; scroll-padding-top:90px }
+
     body {
-      margin:0; min-width:320px; color:var(--text);
-      background:radial-gradient(ellipse at top,#34204e,transparent 48%),var(--bg);
-      font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
-      line-height:1.6;
+      min-height: 100vh;
+      padding: 35px 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 50% 0%, #341052 0%, transparent 48%),
+        radial-gradient(ellipse at 0% 80%, #20083b 0%, transparent 40%),
+        var(--bg);
+      overflow-x: hidden;
     }
-    a { color:inherit; text-decoration:none }
-    button { font:inherit; cursor:pointer }
-    a:focus-visible,button:focus-visible { outline:2px solid var(--pink);outline-offset:4px }
-    .container { width:min(1100px,92%);margin:auto }
-    header {
-      position:sticky;top:0;z-index:10;
-      background:#0b0912eF;border-bottom:1px solid var(--border);
-      backdrop-filter:blur(14px)
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      text-align: center;
+      position: relative;
     }
-    nav {
-      min-height:72px;display:flex;justify-content:space-between;
-      align-items:center;gap:18px;flex-wrap:wrap
+
+    .profile {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 22px;
+      border: 3px solid var(--purple);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #26063f, #09000f);
+      box-shadow: 0 0 25px #8b2cff99,
+                  inset 0 0 20px #8b2cff44;
+      font-size: 58px;
+      animation: glow 3s infinite alternate;
     }
-    .logo { font-size:1.5rem;font-weight:950;letter-spacing:-1px }
-    .logo span,.gradient {
-      background:var(--gradient);background-clip:text;
-      -webkit-background-clip:text;color:transparent
-    }
-    .links { display:flex;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:.9rem }
-    .links a:hover { color:var(--pink) }
-    .hero { text-align:center;padding:clamp(65px,10vw,120px) 0 75px }
-    .tag {
-      display:inline-block;padding:6px 14px;border:1px solid #704aa5;
-      border-radius:999px;background:#a56aff18;color:#e0caff;
-      font-size:.78rem;font-weight:800;letter-spacing:1px
-    }
+
     h1 {
-      font-size:clamp(2.7rem,8vw,5.6rem);line-height:1.04;
-      letter-spacing:-.06em;margin:24px auto 20px
+      font-size: clamp(32px, 8vw, 46px);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      background: linear-gradient(90deg, #ffffff, #e5a4ff, #8b2cff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
-    .lead { max-width:670px;margin:auto;color:var(--muted);font-size:1.08rem }
-    .actions { display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px }
-    .btn {
-      display:inline-flex;align-items:center;justify-content:center;
-      min-height:45px;padding:11px 18px;border:1px solid transparent;
-      border-radius:11px;background:var(--gradient);color:white;font-weight:800;
-      transition:transform .2s,filter .2s
+
+    .subtitle {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
     }
-    .btn:hover { transform:translateY(-2px);filter:brightness(1.1) }
-    .btn.secondary { background:var(--panel);border-color:var(--border) }
-    .trust { margin-top:28px;color:var(--muted);font-size:.85rem }
-    .trust span { margin:0 9px }
-    section { padding:70px 0 }
-    .heading { max-width:700px;text-align:center;margin:0 auto 35px }
-    .heading h2 { font-size:clamp(1.9rem,4vw,2.6rem);line-height:1.2;margin:0 0 10px }
-    .heading p { color:var(--muted);margin:0 }
-    .grid { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px }
-    .product {
-      display:flex;flex-direction:column;padding:23px;min-width:0;
-      border:1px solid var(--border);border-radius:18px;
-      background:linear-gradient(145deg,#1b172a,#100e18);
-      transition:transform .2s,border-color .2s
+
+    .divider {
+      width: 110px;
+      height: 3px;
+      margin: 24px auto;
+      border-radius: 10px;
+      background: linear-gradient(90deg, transparent, var(--pink), var(--purple), transparent);
     }
-    .product:hover { transform:translateY(-4px);border-color:#a56aff99 }
+
+    .links {
+      display: grid;
+      gap: 14px;
+    }
+
+    .link {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 17px 19px;
+      min-height: 84px;
+      text-align: left;
+      text-decoration: none;
+      color: white;
+      border: 1px solid #9b43ff;
+      border-radius: 18px;
+      background: linear-gradient(110deg, #220b37, #100719 75%);
+      box-shadow: 0 0 12px #8b2cff20;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+
+    .link:hover {
+      transform: translateY(-3px);
+      border-color: #ed35ff;
+      box-shadow: 0 0 24px #8b2cff66;
+    }
+
     .icon {
-      display:grid;place-items:center;width:52px;height:52px;margin-bottom:16px;
-      border-radius:15px;background:#a56aff20;border:1px solid #a56aff55;font-size:1.6rem
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: #32104c;
+      font-size: 25px;
     }
-    .product h3 { margin:0 0 7px }
-    .product p { flex:1;color:var(--muted);font-size:.91rem;margin:0 }
-    .price { margin:18px 0;font-size:1.45rem;font-weight:900 }
-    .price small { display:block;font-size:.75rem;color:var(--muted);font-weight:400 }
-    .product .btn { width:100% }
-    .about { border-block:1px solid var(--border);background:#ffffff06 }
-    .about-content { max-width:760px;margin:auto;text-align:center }
-    .about-content p { color:var(--muted) }
-    .socials { display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px }
-    .socials a { padding:10px 16px;border:1px solid var(--border);border-radius:10px;background:var(--panel) }
-    .socials a:hover { border-color:var(--pink) }
-    .contact {
-      max-width:760px;margin:auto;padding:clamp(24px,5vw,45px);
-      text-align:center;border:1px solid var(--border);border-radius:24px;
-      background:radial-gradient(ellipse at top,#a56aff20,transparent 65%),var(--panel)
+
+    .link-info {
+      flex: 1;
+      min-width: 0;
     }
-    .contact h2 { font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.2 }
-    .contact p,.notice { color:var(--muted) }
-    .notice { min-height:1.5em;font-size:.85rem }
-    footer { text-align:center;padding:30px 0 100px;border-top:1px solid var(--border);color:var(--muted);font-size:.85rem }
-    .music {
-      position:fixed;z-index:20;bottom:12px;left:12px;display:flex;align-items:center;
-      gap:7px;max-width:calc(100vw - 24px);padding:9px;border:1px solid #a56aff88;
-      border-radius:13px;background:#151221f5;box-shadow:0 8px 28px #0007
+
+    .link-info strong {
+      display: block;
+      font-size: 17px;
+      margin-bottom: 6px;
     }
-    .music button { border:0;border-radius:8px;background:var(--gradient);color:white;padding:8px 10px;font-size:.78rem;font-weight:800 }
-    .music span { color:var(--muted);font-size:.8rem }
-    #mp3File { display:none }
-    @media(max-width:900px) {
-      .grid { grid-template-columns:repeat(2,minmax(0,1fr)) }
-      nav { padding:12px 0 }
+
+    .link-info small {
+      color: #cdb8e4;
+      font-size: 12px;
     }
-    @media(max-width:520px) {
-      .grid { grid-template-columns:1fr }
-      .links { width:100%;gap:13px;font-size:.84rem }
-      section { padding:55px 0 }
-      .music { left:7px;bottom:7px;gap:5px }
-      .music span { display:none }
+
+    .arrow {
+      color: #c57aff;
+      font-size: 26px;
     }
-    @media(prefers-reduced-motion:reduce) {
-      *,*::before,*::after { scroll-behavior:auto!important;transition:none!important }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 30px 0;
+    }
+
+    .feature {
+      padding: 12px 4px;
+      border-right: 1px solid #5d2580;
+    }
+
+    .feature:last-child {
+      border-right: none;
+    }
+
+    .feature span {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .feature strong {
+      display: block;
+      font-size: 12px;
+    }
+
+    .feature small {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .slogan {
+      margin-top: 28px;
+      color: #d78aff;
+      font-size: 19px;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 35px;
+      padding-top: 18px;
+      border-top: 1px solid #522273;
+      color: #a58bbd;
+      font-size: 12px;
+      line-height: 2;
+    }
+
+    footer strong {
+      color: #d99aff;
+    }
+
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 15px #8b2cff55;
+      }
+      to {
+        box-shadow: 0 0 35px #bd40ff99;
+      }
+    }
+
+    @media (max-width: 380px) {
+      body {
+        padding: 25px 12px;
+      }
+
+      .link {
+        padding: 14px 12px;
+        gap: 10px;
+      }
+
+      .icon {
+        width: 40px;
+        height: 40px;
+        font-size: 21px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <nav class="container" aria-label="Menu principal">
-      <a class="logo" href="#inicio">Matrys<span>Arts.</span></a>
-      <div class="links">
-        <a href="#inicio">Início</a>
-        <a href="#catalogo">Catálogo</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#contato">Contato</a>
-      </div>
+  <main class="container">
+
+    <div class="profile" aria-label="Símbolo da MatrysArts">
+      👑
+    </div>
+
+    <h1>MatrysArts</h1>
+
+    <p class="subtitle">
+      ✦ Artes digitais • Design • Contato ✦
+      <br>
+      Transformando ideias em arte!
+    </p>
+
+    <div class="divider"></div>
+
+    <nav class="links" aria-label="Links oficiais">
+
+      <a class="link"
+         href="https://www.instagram.com/matrysarts01/"
+         target="_blank"
+         rel="noopener noreferrer">
+        <span class="icon">📸</span>
+        <span class="link-info">
+          <strong>Instagram</strong>
+          <small>Acompanhe meu trabalho</small>
+        </span>
+        <span class="arrow">›</span>
+      </a>
+
+      <!-- Troque pelo seu número com código do país e DDD -->
+      <a class="link"
+         href="https://wa.me/SEUNUMERO"
+         target="_blank"
+         rel="noopener noreferrer">
+        <span class="icon">💬</span>
+        <span class="link-info">
+          <strong>WhatsApp</strong>
+          <small>Peça seu orçamento</small>
+        </span>
+        <span class="arrow">›</span>
+      </a>
+
+      <!-- Troque pelo endereço do seu TikTok -->
+      <a class="link"
+         href="https://www.tiktok.com/"
+         target="_blank"
+         rel="noopener noreferrer">
+        <span class="icon">🎵</span>
+        <span class="link-info">
+          <strong>TikTok</strong>
+          <small>Vídeos e novidades</small>
+        </span>
+        <span class="arrow">›</span>
+      </a>
+
+      <!-- Troque pelo endereço do seu portfólio -->
+      <a class="link"
+         href="https://www.instagram.com/matrysarts01/"
+         target="_blank"
+         rel="noopener noreferrer">
+        <span class="icon">🎨</span>
+        <span class="link-info">
+          <strong>Portfólio</strong>
+          <small>Conheça minhas artes</small>
+        </span>
+        <span class="arrow">›</span>
+      </a>
+
     </nav>
-  </header>
 
-  <main>
-    <section class="hero" id="inicio">
-      <div class="container">
-        <span class="tag">✦ ESTÚDIO DE ARTES DIGITAIS</span>
-        <h1>Sua ideia.<br>Sua identidade.<br><span class="gradient">Sua arte.</span></h1>
-        <p class="lead">Artes digitais personalizadas para destacar seu perfil. Escolha seu serviço, envie sua ideia e combine seu pedido com a MatrysArts.</p>
-        <div class="actions">
-          <a class="btn" href="#catalogo">✦ Explorar catálogo</a>
-          <a class="btn secondary" href="https://www.instagram.com/matrysarts01/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
-        </div>
-        <div class="trust"><span>✦ Design personalizado</span><span>✦ Atendimento direto</span><span>✦ Artes digitais</span></div>
+    <section class="features" aria-label="Diferenciais">
+
+      <div class="feature">
+        <span>🛡️</span>
+        <strong>Qualidade</strong>
+        <small>Em cada arte</small>
       </div>
+
+      <div class="feature">
+        <span>⚡</span>
+        <strong>Agilidade</strong>
+        <small>Atendimento rápido</small>
+      </div>
+
+      <div class="feature">
+        <span>💜</span>
+        <strong>Suporte</strong>
+        <small>Atendimento</small>
+      </div>
+
     </section>
 
-    <section id="catalogo">
-      <div class="container">
-        <div class="heading">
-          <h2>Encontre sua próxima arte</h2>
-          <p>Escolha um serviço para iniciar seu pedido pelo WhatsApp.</p>
-        </div>
-        <div class="grid">
-          <article class="product">
-            <div class="icon" aria-hidden="true">🎭</div>
-            <h3>Foto de perfil</h3>
-            <p>Arte personalizada para suas redes sociais.</p>
-            <div class="price">R$ 10,00</div>
-            <button class="btn order" data-product="Foto de perfil" data-price="R$ 10,00">Solicitar arte</button>
-          </article>
-          <article class="product">
-            <div class="icon" aria-hidden="true">🛡️</div>
-            <h3>Brasão</h3>
-            <p>Design exclusivo para grupos, equipes e projetos.</p>
-            <div class="price">R$ 25,00</div>
-            <button class="btn order" data-product="Brasão" data-price="R$ 25,00">Solicitar arte</button>
-          </article>
-          <article class="product">
-            <div class="icon" aria-hidden="true">🖼️</div>
-            <h3>Banner ou capa</h3>
-            <p>Composição visual para perfis, canais e páginas.</p>
-            <div class="price">R$ 20,00</div>
-            <button class="btn order" data-product="Banner ou capa" data-price="R$ 20,00">Solicitar arte</button>
-          </article>
-          <article class="product">
-            <div class="icon" aria-hidden="true">💎</div>
-            <h3>Kit personalizado</h3>
-            <p>Combine diferentes artes para sua identidade visual.</p>
-            <div class="price">A partir de R$ 25,00<small>Valor final conforme o kit</small></div>
-            <button class="btn order" data-product="Kit personalizado" data-price="a combinar">Consultar opções</button>
-          </article>
-        </div>
-      </div>
-    </section>
+    <p class="slogan">
+      ✨ Sua ideia, nossa arte. ✨
+    </p>
 
-    <section class="about" id="sobre">
-      <div class="container about-content">
-        <div class="heading"><h2>Sobre a <span class="gradient">MatrysArts</span></h2><p>Design com personalidade.</p></div>
-        <p>Criamos artes digitais personalizadas com estilo e atenção aos detalhes. Conte sua ideia e converse conosco para combinar o projeto.</p>
-        <div class="socials">
-          <a href="https://www.instagram.com/matrysarts01/" target="_blank" rel="noopener noreferrer">📸 Instagram</a>
-          <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">🎵 TikTok</a>
-        </div>
-      </div>
-    </section>
+    <footer>
+      <strong>👑 MatrysArts</strong>
+      <br>
+      Artes digitais feitas com criatividade.
+      <br>
+      © <span id="year"></span> MatrysArts
+    </footer>
 
-    <section id="contato">
-      <div class="container">
-        <div class="contact">
-          <span class="tag">VAMOS CRIAR ALGO ESPECIAL?</span>
-          <h2>Seu próximo projeto começa aqui.</h2>
-          <p>Entre em contato para tirar dúvidas, consultar kits e combinar seu pedido.</p>
-          <div class="actions"><button class="btn" id="contactButton">💬 Falar pelo WhatsApp</button></div>
-          <p class="notice" id="notice" role="status" aria-live="polite"></p>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <footer>© <span id="year"></span> MatrysArts. Todos os direitos reservados.</footer>
-
-  <aside class="music" aria-label="Controle de música">
-    <span>🎵 Música</span>
-    <button id="musicToggle" type="button" aria-pressed="false">▶ Tocar</button>
-    <button id="musicSelect" type="button">Escolher MP3</button>
-    <input id="mp3File" type="file" accept="audio/*" aria-label="Escolher música do computador">
-    <audio id="audio" loop preload="none"></audio>
-  </aside>
-
   <script>
-    "use strict";
-
-    // TROQUE SEUNUMERO pelo número com 55 + DDD + telefone, somente números.
-    // Exemplo de formato: 5511999999999
-    const WHATSAPP_NUMBER = "SEUNUMERO";
-
-    const notice = document.getElementById("notice");
-    const audio = document.getElementById("audio");
-    const musicToggle = document.getElementById("musicToggle");
-    const mp3File = document.getElementById("mp3File");
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    function openWhatsApp(message) {
-      const number = WHATSAPP_NUMBER.replace(/\D/g, "");
-
-      if (!/^\d{12,13}$/.test(number)) {
-        notice.textContent = "Configure seu número no campo WHATSAPP_NUMBER do código.";
-        return;
-      }
-
-      const url = "https://wa.me/" + number + "?text=" + encodeURIComponent(message);
-      window.open(url, "_blank", "noopener,noreferrer");
-    }
-
-    document.querySelectorAll(".order").forEach((button) => {
-      button.addEventListener("click", () => {
-        openWhatsApp(
-          "Olá! Vim pelo site MatrysArts e gostaria de pedir: " +
-          button.dataset.product + ". Valor anunciado: " +
-          button.dataset.price + ". Como faço para continuar?"
-        );
-      });
-    });
-
-    document.getElementById("contactButton").addEventListener("click", () => {
-      openWhatsApp("Olá! Vim pelo site MatrysArts e gostaria de informações sobre as artes.");
-    });
-
-    // Envie o arquivo para public/music/musica.mp3 no repositório.
-    // Se escolher outra pasta, ajuste este caminho.
-    audio.src = "./public/music/musica.mp3";
-
-    function updateMusicButton() {
-      const playing = !audio.paused;
-      musicToggle.textContent = playing ? "⏸ Pausar" : "▶ Tocar";
-      musicToggle.setAttribute("aria-pressed", String(playing));
-    }
-
-    musicToggle.addEventListener("click", async () => {
-      try {
-        if (audio.paused) {
-          await audio.play();
-        } else {
-          audio.pause();
-        }
-        notice.textContent = "";
-      } catch {
-        notice.textContent = "Não foi possível tocar o MP3. Confira o caminho ou escolha um arquivo local.";
-      }
-      updateMusicButton();
-    });
-
-    document.getElementById("musicSelect").addEventListener("click", () => mp3File.click());
-
-    mp3File.addEventListener("change", () => {
-      const file = mp3File.files && mp3File.files[0];
-      if (!file) return;
-
-      if (!file.type.startsWith("audio/")) {
-        notice.textContent = "Selecione um arquivo de áudio válido.";
-        return;
-      }
-
-      if (audio.dataset.objectUrl) URL.revokeObjectURL(audio.dataset.objectUrl);
-      const objectUrl = URL.createObjectURL(file);
-      audio.dataset.objectUrl = objectUrl;
-      audio.src = objectUrl;
-
-      audio.play().then(updateMusicButton).catch(() => {
-        notice.textContent = "Arquivo selecionado. Clique em Tocar para iniciar.";
-        updateMusicButton();
-      });
-    });
-
-    audio.addEventListener("play", updateMusicButton);
-    audio.addEventListener("pause", updateMusicButton);
-    audio.addEventListener("ended", updateMusicButton);
-
-    window.addEventListener("pagehide", () => {
-      if (audio.dataset.objectUrl) URL.revokeObjectURL(audio.dataset.objectUrl);
-    });
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
   </script>
 </body>
 </html>
-```
