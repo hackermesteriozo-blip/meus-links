@@ -1,349 +1,549 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#08030f">
-  <meta name="description" content="MatrysArts — Artes digitais, design e contato.">
-  <title>MatrysArts | Links Oficiais</title>
+  <meta name="theme-color" content="#09090f">
+  <meta name="description" content="MatrysArts — artes digitais, perfis, brasões, banners e capas profissionais.">
+
+  <title>MatrysArts | Artes Digitais</title>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --bg: #09090f;
+      --card: #13131e;
+      --purple: #9b5cff;
+      --pink: #ff4fc8;
+      --text: #f5f3ff;
+      --muted: #aaa5bd;
+      --border: rgba(255,255,255,.1);
     }
 
-    :root {
-      --bg: #08030f;
-      --purple: #8b2cff;
-      --pink: #ed35ff;
-      --text: #ffffff;
-      --muted: #c5afd9;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      min-height: 100vh;
-      padding: 35px 18px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
       background:
-        radial-gradient(ellipse at 50% 0%, #341052 0%, transparent 48%),
-        radial-gradient(ellipse at 0% 80%, #20083b 0%, transparent 40%),
+        radial-gradient(ellipse at top, #24113e 0%, transparent 45%),
         var(--bg);
-      overflow-x: hidden;
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
     .container {
-      width: 100%;
-      max-width: 520px;
-      text-align: center;
-      position: relative;
+      width: min(1100px, 92%);
+      margin: auto;
     }
 
-    .profile {
-      width: 120px;
-      height: 120px;
-      margin: 0 auto 22px;
-      border: 3px solid var(--purple);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(145deg, #26063f, #09000f);
-      box-shadow: 0 0 25px #8b2cff99,
-                  inset 0 0 20px #8b2cff44;
-      font-size: 58px;
-      animation: glow 3s infinite alternate;
+    header {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+      background: rgba(9,9,15,.8);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--purple);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--pink);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 85px 0 65px;
+    }
+
+    .tag {
+      display: inline-block;
+      border: 1px solid #6943a5;
+      color: #d7baff;
+      background: rgba(155,92,255,.12);
+      border-radius: 30px;
+      padding: 6px 15px;
+      font-size: 13px;
+      margin-bottom: 20px;
     }
 
     h1 {
-      font-size: clamp(32px, 8vw, 46px);
-      font-weight: 900;
-      letter-spacing: -1.5px;
-      background: linear-gradient(90deg, #ffffff, #e5a4ff, #8b2cff);
-      -webkit-background-clip: text;
+      font-size: clamp(38px, 7vw, 72px);
+      line-height: 1.08;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, var(--purple), var(--pink));
       background-clip: text;
+      -webkit-background-clip: text;
       color: transparent;
     }
 
-    .subtitle {
-      margin-top: 12px;
+    .hero p {
+      max-width: 650px;
+      margin: auto;
       color: var(--muted);
-      font-size: 15px;
-      line-height: 1.7;
-    }
-
-    .divider {
-      width: 110px;
-      height: 3px;
-      margin: 24px auto;
-      border-radius: 10px;
-      background: linear-gradient(90deg, transparent, var(--pink), var(--purple), transparent);
-    }
-
-    .links {
-      display: grid;
-      gap: 14px;
-    }
-
-    .link {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      padding: 17px 19px;
-      min-height: 84px;
-      text-align: left;
-      text-decoration: none;
-      color: white;
-      border: 1px solid #9b43ff;
-      border-radius: 18px;
-      background: linear-gradient(110deg, #220b37, #100719 75%);
-      box-shadow: 0 0 12px #8b2cff20;
-      transition: transform .2s, box-shadow .2s, border-color .2s;
-    }
-
-    .link:hover {
-      transform: translateY(-3px);
-      border-color: #ed35ff;
-      box-shadow: 0 0 24px #8b2cff66;
-    }
-
-    .icon {
-      width: 46px;
-      height: 46px;
-      flex-shrink: 0;
-      display: grid;
-      place-items: center;
-      border-radius: 13px;
-      background: #32104c;
-      font-size: 25px;
-    }
-
-    .link-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .link-info strong {
-      display: block;
       font-size: 17px;
-      margin-bottom: 6px;
     }
 
-    .link-info small {
-      color: #cdb8e4;
-      font-size: 12px;
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 30px;
     }
 
-    .arrow {
-      color: #c57aff;
-      font-size: 26px;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin: 30px 0;
-    }
-
-    .feature {
-      padding: 12px 4px;
-      border-right: 1px solid #5d2580;
-    }
-
-    .feature:last-child {
-      border-right: none;
-    }
-
-    .feature span {
-      display: block;
-      font-size: 22px;
-      margin-bottom: 8px;
-    }
-
-    .feature strong {
-      display: block;
-      font-size: 12px;
-    }
-
-    .feature small {
-      display: block;
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .slogan {
-      margin-top: 28px;
-      color: #d78aff;
-      font-size: 19px;
+    .btn {
+      display: inline-block;
+      padding: 12px 21px;
+      border-radius: 10px;
+      background: linear-gradient(110deg, var(--purple), var(--pink));
+      color: white;
       font-weight: bold;
+      border: 0;
+      cursor: pointer;
+      transition: transform .2s, opacity .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: .9;
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    section {
+      padding: 48px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .product {
+      padding: 24px;
+      background: linear-gradient(145deg, #171522, #101019);
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+      border-color: var(--purple);
+    }
+
+    .product-icon {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .product h3 {
+      font-size: 20px;
+      margin-bottom: 7px;
+    }
+
+    .product p {
+      color: var(--muted);
+      font-size: 14px;
+      min-height: 45px;
+    }
+
+    .price {
+      font-size: 25px;
+      font-weight: bold;
+      margin: 18px 0;
+    }
+
+    .price small {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: normal;
+    }
+
+    .product .btn {
+      width: 100%;
+      text-align: center;
+    }
+
+    .about {
+      text-align: center;
+      background: rgba(255,255,255,.025);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about p {
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 auto 22px;
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .socials a {
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 10px;
+      padding: 12px 17px;
+    }
+
+    .socials a:hover {
+      border-color: var(--pink);
     }
 
     footer {
-      margin-top: 35px;
-      padding-top: 18px;
-      border-top: 1px solid #522273;
-      color: #a58bbd;
+      text-align: center;
+      padding: 30px 0 100px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .music-player {
+      position: fixed;
+      bottom: 15px;
+      left: 15px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px;
+      background: #171522;
+      border: 1px solid #6943a5;
+      border-radius: 13px;
+      box-shadow: 0 8px 30px #0008;
+    }
+
+    .music-player button {
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 0;
+      background: linear-gradient(110deg, var(--purple), var(--pink));
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .music-player span {
       font-size: 12px;
-      line-height: 2;
+      color: var(--muted);
     }
 
-    footer strong {
-      color: #d99aff;
+    #mp3File {
+      display: none;
     }
 
-    @keyframes glow {
-      from {
-        box-shadow: 0 0 15px #8b2cff55;
-      }
-      to {
-        box-shadow: 0 0 35px #bd40ff99;
-      }
-    }
-
-    @media (max-width: 380px) {
-      body {
-        padding: 25px 12px;
+    @media (max-width: 600px) {
+      .hero {
+        padding-top: 60px;
       }
 
-      .link {
-        padding: 14px 12px;
-        gap: 10px;
+      .nav-links {
+        gap: 12px;
       }
 
-      .icon {
-        width: 40px;
-        height: 40px;
-        font-size: 21px;
+      .music-player {
+        left: 8px;
+        bottom: 8px;
+        gap: 5px;
       }
-    }
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
+      .music-player button {
+        padding: 8px;
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="container">
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">Matrys<span>Arts.</span></a>
 
-    <div class="profile" aria-label="Símbolo da MatrysArts">
-      👑
+        <div class="nav-links">
+          <a href="#inicio">Início</a>
+          <a href="#loja">Loja</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#contato">Contato</a>
+        </div>
+      </nav>
     </div>
+  </header>
 
-    <h1>MatrysArts</h1>
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container">
+        <span class="tag">✦ ESTÚDIO DE ARTES DIGITAIS ✦</span>
 
-    <p class="subtitle">
-      ✦ Artes digitais • Design • Contato ✦
-      <br>
-      Transformando ideias em arte!
-    </p>
+        <h1>Transforme sua ideia<br>em uma arte <span>única.</span></h1>
 
-    <div class="divider"></div>
+        <p>
+          Perfis, brasões, banners e capas com identidade visual marcante.
+          Escolha sua arte e faça seu pedido diretamente pelo WhatsApp.
+        </p>
 
-    <nav class="links" aria-label="Links oficiais">
-
-      <a class="link"
-         href="https://www.instagram.com/matrysarts01/"
-         target="_blank"
-         rel="noopener noreferrer">
-        <span class="icon">📸</span>
-        <span class="link-info">
-          <strong>Instagram</strong>
-          <small>Acompanhe meu trabalho</small>
-        </span>
-        <span class="arrow">›</span>
-      </a>
-
-      <!-- Troque pelo seu número com código do país e DDD -->
-      <a class="link"
-         href="https://wa.me/SEUNUMERO"
-         target="_blank"
-         rel="noopener noreferrer">
-        <span class="icon">💬</span>
-        <span class="link-info">
-          <strong>WhatsApp</strong>
-          <small>Peça seu orçamento</small>
-        </span>
-        <span class="arrow">›</span>
-      </a>
-
-      <!-- Troque pelo endereço do seu TikTok -->
-      <a class="link"
-         href="https://www.tiktok.com/"
-         target="_blank"
-         rel="noopener noreferrer">
-        <span class="icon">🎵</span>
-        <span class="link-info">
-          <strong>TikTok</strong>
-          <small>Vídeos e novidades</small>
-        </span>
-        <span class="arrow">›</span>
-      </a>
-
-      <!-- Troque pelo endereço do seu portfólio -->
-      <a class="link"
-         href="https://www.instagram.com/matrysarts01/"
-         target="_blank"
-         rel="noopener noreferrer">
-        <span class="icon">🎨</span>
-        <span class="link-info">
-          <strong>Portfólio</strong>
-          <small>Conheça minhas artes</small>
-        </span>
-        <span class="arrow">›</span>
-      </a>
-
-    </nav>
-
-    <section class="features" aria-label="Diferenciais">
-
-      <div class="feature">
-        <span>🛡️</span>
-        <strong>Qualidade</strong>
-        <small>Em cada arte</small>
+        <div class="buttons">
+          <a class="btn" href="#loja">✦ Ver catálogo</a>
+          <a class="btn btn-outline"
+             href="https://www.instagram.com/matrysarts01/"
+             target="_blank" rel="noopener noreferrer">
+            Instagram ↗
+          </a>
+        </div>
       </div>
-
-      <div class="feature">
-        <span>⚡</span>
-        <strong>Agilidade</strong>
-        <small>Atendimento rápido</small>
-      </div>
-
-      <div class="feature">
-        <span>💜</span>
-        <strong>Suporte</strong>
-        <small>Atendimento</small>
-      </div>
-
     </section>
 
-    <p class="slogan">
-      ✨ Sua ideia, nossa arte. ✨
-    </p>
+    <section id="loja">
+      <div class="container">
+        <h2 class="section-title">Nosso catálogo</h2>
+        <p class="section-subtitle">
+          Escolha seu produto e solicite um orçamento.
+        </p>
 
-    <footer>
-      <strong>👑 MatrysArts</strong>
-      <br>
-      Artes digitais feitas com criatividade.
-      <br>
-      © <span id="year"></span> MatrysArts
-    </footer>
+        <div class="grid">
+          <article class="product">
+            <div class="product-icon">🎭</div>
+            <h3>Foto de perfil</h3>
+            <p>Uma identidade visual exclusiva para suas redes sociais.</p>
+            <div class="price">R$ 10,00</div>
+            <a class="btn" href="#" onclick="pedir('Foto de perfil', '10,00'); return false;">
+              Fazer pedido
+            </a>
+          </article>
 
+          <article class="product">
+            <div class="product-icon">🛡️</div>
+            <h3>Brasão</h3>
+            <p>Design personalizado para grupos, equipes e projetos.</p>
+            <div class="price">R$ 25,00</div>
+            <a class="btn" href="#" onclick="pedir('Brasão', '25,00'); return false;">
+              Fazer pedido
+            </a>
+          </article>
+
+          <article class="product">
+            <div class="product-icon">🖼️</div>
+            <h3>Banner ou capa</h3>
+            <p>Artes digitais para perfis, canais e páginas.</p>
+            <div class="price">R$ 20,00</div>
+            <a class="btn" href="#" onclick="pedir('Banner ou capa', '20,00'); return false;">
+              Fazer pedido
+            </a>
+          </article>
+
+          <article class="product">
+            <div class="product-icon">💎</div>
+            <h3>Kit personalizado</h3>
+            <p>Combine artes para criar uma identidade completa.</p>
+            <div class="price">A partir de R$ 25 <small>consulte opções</small></div>
+            <a class="btn" href="#" onclick="pedir('Kit personalizado', 'sob consulta'); return false;">
+              Consultar kit
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="sobre">
+      <div class="container">
+        <h2 class="section-title">Sobre a MatrysArts</h2>
+        <p>
+          Criamos artes digitais com estilo, personalidade e atenção aos
+          detalhes. Entre em contato para explicar sua ideia e combinar os
+          detalhes do pedido.
+        </p>
+
+        <div class="socials">
+          <a href="https://www.instagram.com/matrysarts01/"
+             target="_blank" rel="noopener noreferrer">📸 Instagram</a>
+
+          <a href="https://www.tiktok.com/"
+             target="_blank" rel="noopener noreferrer">🎵 TikTok</a>
+
+          <a href="#contato">💬 Atendimento</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="container">
+        <h2 class="section-title">Vamos criar sua arte?</h2>
+        <p class="section-subtitle">
+          Fale conosco para combinar seu pedido e a forma de pagamento.
+        </p>
+
+        <div class="buttons">
+          <a class="btn" href="#" onclick="contato(); return false;">
+            💬 Falar pelo WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
+  <footer>
+    <div class="container">
+      © <span id="year"></span> MatrysArts. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <div class="music-player">
+    <span>🎵 Música</span>
+    <button id="musicToggle" type="button">▶ Tocar</button>
+    <button id="musicSelect" type="button">MP3</button>
+    <input id="mp3File" type="file" accept="audio/mpeg,audio/mp3,audio/*">
+  </div>
+
+  <audio id="music" loop preload="none"></audio>
+
   <script>
+    // IMPORTANTE: coloque seu número com código do país e DDD.
+    // Exemplo de formato: 55 + DDD + número, somente dígitos.
+    const WHATSAPP_NUMBER = "SEUNUMERO";
+
+    const music = document.getElementById("music");
+    const musicToggle = document.getElementById("musicToggle");
+    const musicSelect = document.getElementById("musicSelect");
+    const mp3File = document.getElementById("mp3File");
+
     document.getElementById("year").textContent =
       new Date().getFullYear();
+
+    function abrirWhatsApp(texto) {
+      if (!/^\d{12,13}$/.test(WHATSAPP_NUMBER)) {
+        alert("Configure seu número do WhatsApp no código do site.");
+        return;
+      }
+
+      const url =
+        "https://wa.me/" + WHATSAPP_NUMBER +
+        "?text=" + encodeURIComponent(texto);
+
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+
+    function pedir(produto, preco) {
+      abrirWhatsApp(
+        "Olá! Quero pedir: " + produto +
+        ". Valor anunciado: R$ " + preco +
+        ". Como faço para continuar?"
+      );
+    }
+
+    function contato() {
+      abrirWhatsApp("Olá! Vim pelo site MatrysArts e quero informações.");
+    }
+
+    // Tenta carregar a música publicada no repositório.
+    // Para GitHub Pages em /meus-links/, este caminho relativo
+    // procura a música dentro de public/music/ a partir da raiz.
+    music.src = "./public/music/musica.mp3";
+
+    musicToggle.addEventListener("click", async () => {
+      try {
+        if (music.paused) {
+          await music.play();
+          musicToggle.textContent = "⏸ Pausar";
+        } else {
+          music.pause();
+          musicToggle.textContent = "▶ Tocar";
+        }
+      } catch {
+        alert(
+          "Não foi possível tocar a música. Confira se o arquivo " +
+          "public/music/musica.mp3 foi enviado ao GitHub."
+        );
+      }
+    });
+
+    music.addEventListener("ended", () => {
+      musicToggle.textContent = "▶ Tocar";
+    });
+
+    music.addEventListener("pause", () => {
+      musicToggle.textContent = "▶ Tocar";
+    });
+
+    music.addEventListener("play", () => {
+      musicToggle.textContent = "⏸ Pausar";
+    });
+
+    // Permite selecionar um MP3 do computador para esta sessão.
+    musicSelect.addEventListener("click", () => mp3File.click());
+
+    mp3File.addEventListener("change", () => {
+      const file = mp3File.files && mp3File.files[0];
+
+      if (!file) return;
+
+      if (music.dataset.localUrl) {
+        URL.revokeObjectURL(music.dataset.localUrl);
+      }
+
+      const localUrl = URL.createObjectURL(file);
+      music.dataset.localUrl = localUrl;
+      music.src = localUrl;
+      music.play().catch(() => {
+        alert("Clique em Tocar para iniciar a música.");
+      });
+    });
   </script>
 </body>
 </html>
+```
