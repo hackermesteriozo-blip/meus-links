@@ -1,0 +1,1 @@
+Coloque o arquivo MP3 nesta pasta com o nome musica.mp3. Caminho: public/music/musica.mp3. Use apenas músicas próprias ou autorizadas.
