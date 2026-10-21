@@ -1,83 +1,349 @@
-import os, zipfile, shutil, re, pathlib
-src = "/mnt/data/MatrysArts-PRO-Completo.zip"
-work = "/mnt/data/MatrysArts-PRO-Atualizado"
-out = "/mnt/data/MatrysArts-PRO-Atualizado.zip"
-if os.path.exists(work): shutil.rmtree(work)
-os.makedirs(work, exist_ok=True)
-with zipfile.ZipFile(src, "r") as z:
-    z.extractall(work)
-# Locate project root
-root = work
-if not os.path.exists(os.path.join(root, "server.js")):
-    candidates = [os.path.join(root,d) for d in os.listdir(root) if os.path.isdir(os.path.join(root,d))]
-    root = next((c for c in candidates if os.path.exists(os.path.join(c,"server.js"))), root)
-html_path = os.path.join(root, "public", "index.html")
-with open(html_path, "r", encoding="utf-8") as f:
-    html = f.read()
-# Add player styling before media query
-css_add = """
-.music-widget{position:fixed;left:16px;bottom:17px;z-index:12;display:flex;align-items:center;gap:8px;padding:9px 11px;background:#13091deF;border:1px solid #754096;border-radius:15px;box-shadow:0 8px 30px #0007;backdrop-filter:blur(14px);max-width:calc(100vw - 32px)}
-.music-widget button{border:1px solid #754096;background:#281137;color:#fff;border-radius:9px;padding:8px 10px;cursor:pointer;font-weight:800;font-size:12px}
-.music-widget .music-label{font-size:11px;color:#e7c8f8;max-width:115px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.music-widget input{width:145px;max-width:26vw;font-size:10px;color:#d8b9ec}
-@media(max-width:480px){.music-widget{left:10px;bottom:76px;padding:7px;gap:5px}.music-widget .music-label{max-width:70px}.music-widget input{width:100px}}
-"""
-html = html.replace("@media(max-width:800px)", css_add + "\n@media(max-width:800px)", 1)
-# Add widget before modal
-widget = """
-<div class="music-widget" aria-label="Controles de música">
-  <button id="musicToggle" type="button" aria-label="Reproduzir música">▶ Música</button>
-  <span class="music-label" id="musicLabel">Trilha MatrysArts</span>
-  <label class="btn" for="musicFile" style="padding:7px 8px;font-size:10px">🎵 MP3</label>
-  <input id="musicFile" type="file" accept="audio/mpeg,audio/mp3,.mp3" hidden>
-  <audio id="siteMusic" loop preload="none">
-    <source src="/music/musica.mp3" type="audio/mpeg">
-  </audio>
-</div>
-"""
-html = html.replace('<div id="modal" class="modal hidden">', widget + '\n<div id="modal" class="modal hidden">', 1)
-# Insert script logic before year setup
-music_js = r"""
-const music=$("siteMusic"), musicBtn=$("musicToggle"), musicFile=$("musicFile"), musicLabel=$("musicLabel");
-let localMusicUrl=null;
-musicBtn.addEventListener("click",async()=>{
-  try{
-    if(music.paused){await music.play();musicBtn.textContent="⏸ Pausar";musicLabel.textContent=musicFile.files?.[0]?.name||"Trilha MatrysArts";}
-    else{music.pause();musicBtn.textContent="▶ Música";}
-  }catch(e){toast("Coloque public/music/musica.mp3 ou escolha um arquivo MP3 no botão 🎵 MP3.");}
-});
-music.addEventListener("ended",()=>{musicBtn.textContent="▶ Música"});
-music.addEventListener("error",()=>{if(!musicFile.files?.length)musicLabel.textContent="Escolha um MP3";});
-musicFile.addEventListener("change",()=>{
-  const file=musicFile.files?.[0];if(!file)return;
-  if(!file.name.toLowerCase().endsWith(".mp3")&&!file.type.includes("mpeg")){toast("Escolha um arquivo MP3.");return;}
-  if(localMusicUrl)URL.revokeObjectURL(localMusicUrl);
-  localMusicUrl=URL.createObjectURL(file);music.src=localMusicUrl;music.load();musicLabel.textContent=file.name;
-  music.play().then(()=>musicBtn.textContent="⏸ Pausar").catch(()=>toast("Toque em ▶ Música para iniciar a reprodução."));
-});
-"""
-html = html.replace('$("year").textContent=new Date().getFullYear();', music_js + '\n$("year").textContent=new Date().getFullYear();', 1)
-with open(html_path, "w", encoding="utf-8") as f: f.write(html)
-# Create permanent location for MP3 and instructions
-music_dir = os.path.join(root, "public", "music")
-os.makedirs(music_dir, exist_ok=True)
-with open(os.path.join(music_dir, "COLOQUE-A-MUSICA-AQUI.txt"), "w", encoding="utf-8") as f:
-    f.write("Coloque seu arquivo MP3 nesta pasta com o nome musica.mp3. Caminho: public/music/musica.mp3\nUse apenas músicas próprias ou com autorização de uso.\n")
-readme = os.path.join(root, "README.md")
-with open(readme, "r", encoding="utf-8") as f: r = f.read()
-r += """
 
-## Música de fundo MP3
-- Coloque o arquivo de música em `public/music/musica.mp3`.
-- O player fixo no canto inferior esquerdo toca essa música quando a pessoa clicar em **▶ Música**.
-- Também é possível escolher um MP3 local pelo botão **🎵 MP3**. Essa escolha vale somente para a sessão atual do navegador; para deixar a música disponível a todos, coloque o arquivo em `public/music/musica.mp3` e publique novamente.
-- Navegadores normalmente bloqueiam reprodução automática com som; por isso a música começa após o clique do visitante.
-"""
-with open(readme, "w", encoding="utf-8") as f: f.write(r)
-if os.path.exists(out): os.remove(out)
-with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
-    for current, dirs, names in os.walk(root):
-        for name in names:
-            full = os.path.join(current, name)
-            z.write(full, os.path.relpath(full, root))
-print(f"Projeto atualizado: {out}\nHTML: {html_path}\nArquivos no ZIP: {len(zipfile.ZipFile(out).namelist())}")
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08030f">
+  <meta name="description" content="MatrysArts — Artes digitais, design e contato.">
+  <title>MatrysArts | Links Oficiais</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #08030f;
+      --purple: #8b2cff;
+      --pink: #ed35ff;
+      --text: #ffffff;
+      --muted: #c5afd9;
+    }
+
+    body {
+      min-height: 100vh;
+      padding: 35px 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 50% 0%, #341052 0%, transparent 48%),
+        radial-gradient(ellipse at 0% 80%, #20083b 0%, transparent 40%),
+        var(--bg);
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      text-align: center;
+      position: relative;
+    }
+
+    .profile {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 22px;
+      border: 3px solid var(--purple);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #26063f, #09000f);
+      box-shadow: 0 0 25px #8b2cff99,
+                  inset 0 0 20px #8b2cff44;
+      font-size: 58px;
+      animation: glow 3s infinite alternate;
+    }
+
+    h1 {
+      font-size: clamp(32px, 8vw, 46px);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      background: linear-gradient(90deg, #ffffff, #e5a4ff, #8b2cff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .divider {
+      width: 110px;
+      height: 3px;
+      margin: 24px auto;
+      border-radius: 10px;
+      background: linear-gradient(90deg, transparent, var(--pink), var(--purple), transparent);
+    }
+
+    .links {
+      display: grid;
+      gap: 14px;
+    }
+
+    .link {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 17px 19px;
+      min-height: 84px;
+      text-align: left;
+      text-decoration: none;
+      color: white;
+      border: 1px solid #9b43ff;
+      border-radius: 18px;
+      background: linear-gradient(110deg, #220b37, #100719 75%);
+      box-shadow: 0 0 12px #8b2cff20;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+
+    .link:hover {
+      transform: translateY(-3px);
+      border-color: #ed35ff;
+      box-shadow: 0 0 24px #8b2cff66;
+    }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: #32104c;
+      font-size: 25px;
+    }
+
+    .link-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .link-info strong {
+      display: block;
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
+    .link-info small {
+      color: #cdb8e4;
+      font-size: 12px;
+    }
+
+    .arrow {
+      color: #c57aff;
+      font-size: 26px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 30px 0;
+    }
+
+    .feature {
+      padding: 12px 4px;
+      border-right: 1px solid #5d2580;
+    }
+
+    .feature:last-child {
+      border-right: none;
+    }
+
+    .feature span {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .feature strong {
+      display: block;
+      font-size: 12px;
+    }
+
+    .feature small {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .slogan {
+      margin-top: 28px;
+      color: #d78aff;
+      font-size: 19px;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 35px;
+      padding-top: 18px;
+      border-top: 1px solid #522273;
+      color: #a58bbd;
+      font-size: 12px;
+      line-height: 2;
+    }
+
+    footer strong {
+      color: #d99aff;
+    }
+
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 15px #8b2cff55;
+      }
+      to {
+        box-shadow: 0 0 35px #bd40ff99;
+      }
+    }
+
+    @media (max-width: 380px) {
+      body {
+        padding: 25px 12px;
+      }
+
+      .link {
+        padding: 14px 12px;
+        gap: 10px;
+      }
+
+      .icon {
+        width: 40px;
+        height: 40px;
+        font-size: 21px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <div class="profile" aria-label="Símbolo da MatrysArts">
+      👑
+    </div>
+
+    <h1>MatrysArts</h1>
+
+    <p class="subtitle">
+      ✦ Artes digitais • Design • Contato ✦
+      <br>
+      Transformando ideias em arte!
+    </p>
+
+    <div class="divider"></div>
+
+    <nav class="links" aria-label="Links oficiais">
+
+      <a class="link"
+         href="https://www.instagram.com/matrysarts01/"
+         target="_blank"
+         rel="noopener noreferrer">
+        <span class="icon">📸</span>
+        <span class="link-info">
+          <strong>Instagram</strong>
+          <small>Acompanhe meu trabalho</small>
+        </span>
+        <span class="arrow">›</span>
+      </a>
+
+      <!-- Troque pelo seu número com código do país e DDD -->
+      <a class="link"
+         href="https://wa.me/SEUNUMERO"
+         target="_blank"
+         rel="noopener noreferrer">
+        <span class="icon">💬</span>
+        <span class="link-info">
+          <strong>WhatsApp</strong>
+          <small>Peça seu orçamento</small>
+        </span>
+        <span class="arrow">›</span>
+      </a>
+
+      <!-- Troque pelo endereço do seu TikTok -->
+      <a class="link"
+         href="https://www.tiktok.com/"
+         target="_blank"
+         rel="noopener noreferrer">
+        <span class="icon">🎵</span>
+        <span class="link-info">
+          <strong>TikTok</strong>
+          <small>Vídeos e novidades</small>
+        </span>
+        <span class="arrow">›</span>
+      </a>
+
+      <!-- Troque pelo endereço do seu portfólio -->
+      <a class="link"
+         href="https://www.instagram.com/matrysarts01/"
+         target="_blank"
+         rel="noopener noreferrer">
+        <span class="icon">🎨</span>
+        <span class="link-info">
+          <strong>Portfólio</strong>
+          <small>Conheça minhas artes</small>
+        </span>
+        <span class="arrow">›</span>
+      </a>
+
+    </nav>
+
+    <section class="features" aria-label="Diferenciais">
+
+      <div class="feature">
+        <span>🛡️</span>
+        <strong>Qualidade</strong>
+        <small>Em cada arte</small>
+      </div>
+
+      <div class="feature">
+        <span>⚡</span>
+        <strong>Agilidade</strong>
+        <small>Atendimento rápido</small>
+      </div>
+
+      <div class="feature">
+        <span>💜</span>
+        <strong>Suporte</strong>
+        <small>Atendimento</small>
+      </div>
+
+    </section>
+
+    <p class="slogan">
+      ✨ Sua ideia, nossa arte. ✨
+    </p>
+
+    <footer>
+      <strong>👑 MatrysArts</strong>
+      <br>
+      Artes digitais feitas com criatividade.
+      <br>
+      © <span id="year"></span> MatrysArts
+    </footer>
+
+  </main>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
