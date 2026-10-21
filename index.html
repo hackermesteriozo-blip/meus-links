@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08030f">
+  <meta name="description" content="MatrysArts — Artes digitais, design e contato.">
+  <title>MatrysArts | Links Oficiais</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #08030f;
+      --purple: #8b2cff;
+      --pink: #ed35ff;
+      --text: #ffffff;
+      --muted: #c5afd9;
+    }
+
+    body {
+      min-height: 100vh;
+      padding: 35px 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 50% 0%, #341052 0%, transparent 48%),
+        radial-gradient(ellipse at 0% 80%, #20083b 0%, transparent 40%),
+        var(--bg);
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      text-align: center;
+      position: relative;
+    }
+
+    .profile {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 22px;
+      border: 3px solid var(--purple);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #26063f, #09000f);
+      box-shadow: 0 0 25px #8b2cff99,
+                  inset 0 0 20px #8b2cff44;
+      font-size: 58px;
+      animation: glow 3s infinite alternate;
+    }
+
+    h1 {
+      font-size: clamp(32px, 8vw, 46px);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      background: linear-gradient(90deg, #ffffff, #e5a4ff, #8b2cff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .divider {
+      width: 110px;
+      height: 3px;
+      margin: 24px auto;
+      border-radius: 10px;
+      background: linear-gradient(90deg, transparent, var(--pink), var(--purple), transparent);
+    }
+
+    .links {
+      display: grid;
+      gap: 14px;
+    }
+
+    .link {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 17px 19px;
+      min-height: 84px;
+      text-align: left;
+      text-decoration: none;
+      color: white;
+      border: 1px solid #9b43ff;
+      border-radius: 18px;
+      background: linear-gradient(110deg, #220b37, #100719 75%);
+      box-shadow: 0 0 12px #8b2cff20;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+
+    .link:hover {
+      transform: translateY(-3px);
+      border-color: #ed35ff;
+      box-shadow: 0 0 24px #8b2cff66;
+    }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: #32104c;
+      font-size: 25px;
+    }
+
+    .link-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .link-info strong {
+      display: block;
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
+    .link-info small {
+      color: #cdb8e4;
+      font-size: 12px;
+    }
+
+    .arrow {
+      color: #c57aff;
+      font-size: 26px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 30px 0;
+    }
+
+    .feature {
+      padding: 12px 4px;
+      border-right: 1px solid #5d2580;
+    }
+
+    .feature:last-child {
+      border-right: none;
+    }
+
+    .feature span {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .feature strong {
+      display: block;
+      font-size: 12px;
+    }
+
+    .feature small {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .slogan {
+      margin-top: 28px;
+      color: #d78aff;
+      font-size: 19px;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 35px;
+      padding-top: 18px;
+      border-top: 1px solid #522273;
+      color: #a58bbd;
+      font-size: 12px;
+      line-height: 2;
+    }
+
+    footer strong {
+      color: #d99aff;
+    }
+
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 15px #8b2cff55;
+      }
+      to {
+        box-shadow: 0 0 35px #bd40ff99;
+      }
+    }
+
+    @media (max-width: 380px) {
+      body {
+        padding: 25px 12px;
+      }
+
+      .link {
+        padding: 14px 12px;
+        gap: 10px;
+      }
+
+      .icon {
+        width: 40px;
+        height: 40px;
+        font-size: 21px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <div class="profile" aria-label="Símbolo da MatrysArts">
+      👑
+    </div>
+
+    <h1>MatrysArts</h1>
+
+    <p class="subtitle">
+      ✦ Artes digitais • Design • Contato ✦
+      <br>
+      Transformando ideias em arte!
+    </p>
+
+    <div class="divider"></div>
+
+    <nav class="links" aria-label="Links oficiais">
+
+      <a class="link"
+         href="https://www.instagram.com/matrysarts01/"
+         target="_blank"
+         rel="noopener noreferrer">
+        <span class="icon">📸</span>
+        <span class="link-info">
+          <strong>Instagram</strong>
+          <small>Acompanhe meu trabalho</small>
+        </span>
+        <span class="arrow">›</span>
+      </a>
+
+      <!-- Troque pelo seu número com código do país e DDD -->
+      <a class="link"
+         href="https://wa.me/554991604819"
+         target="_blank"
+         rel="noopener noreferrer">
+        <span class="icon">💬</span>
+        <span class="link-info">
+          <strong>WhatsApp</strong>
+          <small>Peça seu orçamento</small>
+        </span>
+        <span class="arrow">›</span>
+      </a>
+
+      <!-- Troque pelo endereço do seu TikTok -->
+      <a class="link"
+         href="https://www.tiktok.com/"
+         target="_blank"
+         rel="noopener noreferrer">
+        <span class="icon">🎵</span>
+        <span class="link-info">
+          <strong>TikTok</strong>
+          <small>Vídeos e novidades</small>
+        </span>
+        <span class="arrow">›</span>
+      </a>
+
+      <!-- Troque pelo endereço do seu portfólio -->
+      <a class="link"
+         href="https://www.instagram.com/matrysarts01/"
+         target="_blank"
+         rel="noopener noreferrer">
+        <span class="icon">🎨</span>
+        <span class="link-info">
+          <strong>Portfólio</strong>
+          <small>Conheça minhas artes</small>
+        </span>
+        <span class="arrow">›</span>
+      </a>
+
+    </nav>
+
+    <section class="features" aria-label="Diferenciais">
+
+      <div class="feature">
+        <span>🛡️</span>
+        <strong>Qualidade</strong>
+        <small>Em cada arte</small>
+      </div>
+
+      <div class="feature">
+        <span>⚡</span>
+        <strong>Agilidade</strong>
+        <small>Atendimento rápido</small>
+      </div>
+
+      <div class="feature">
+        <span>💜</span>
+        <strong>Suporte</strong>
+        <small>Atendimento</small>
+      </div>
+
+    </section>
+
+    <p class="slogan">
+      ✨ Sua ideia, nossa arte. ✨
+    </p>
+
+    <footer>
+      <strong>👑 MatrysArts</strong>
+      <br>
+      Artes digitais feitas com criatividade.
+      <br>
+      © <span id="year"></span> MatrysArts
+    </footer>
+
+  </main>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
