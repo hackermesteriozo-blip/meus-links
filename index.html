@@ -2,37 +2,59 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#09090f">
-  <meta name="description" content="MatrysArts — artes digitais, perfis, brasões, banners e capas profissionais.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>MatrysArts | Artes Digitais</title>
+  <title>MatrysArts | Design Digital Exclusivo</title>
+
+  <meta name="description" content="MatrysArts: artes digitais personalizadas, fotos de perfil, brasões, banners, capas e kits exclusivos. Peça sua arte pelo WhatsApp.">
+  <meta name="theme-color" content="#0a0911">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="MatrysArts">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MatrysArts | Design Digital Exclusivo">
+  <meta property="og:description" content="Sua identidade visual com estilo. Conheça nossas artes digitais personalizadas.">
+  <meta property="og:locale" content="pt_BR">
+
+  <meta name="color-scheme" content="dark">
+  <link rel="preconnect" href="https://www.instagram.com">
+  <link rel="preconnect" href="https://wa.me">
 
   <style>
     :root {
-      --bg: #09090f;
-      --card: #13131e;
-      --purple: #9b5cff;
-      --pink: #ff4fc8;
-      --text: #f5f3ff;
-      --muted: #aaa5bd;
-      --border: rgba(255,255,255,.1);
+      color-scheme: dark;
+      --bg: #0a0911;
+      --surface: #12111c;
+      --surface-2: #191726;
+      --text: #f8f6ff;
+      --muted: #b2adc5;
+      --purple: #a56aff;
+      --pink: #ff57c8;
+      --border: rgba(255,255,255,.11);
+      --gradient: linear-gradient(115deg, var(--purple), var(--pink));
+      --radius: 18px;
+      --max-width: 1120px;
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
       background:
-        radial-gradient(ellipse at top, #24113e 0%, transparent 45%),
+        radial-gradient(ellipse at 50% -15%, #352052 0, transparent 48%),
         var(--bg);
       color: var(--text);
-      min-height: 100vh;
-      line-height: 1.6;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      line-height: 1.65;
+      min-width: 320px;
     }
 
     a {
@@ -40,41 +62,81 @@
       text-decoration: none;
     }
 
+    button, input {
+      font: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--pink);
+      outline-offset: 4px;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
     .container {
-      width: min(1100px, 92%);
-      margin: auto;
+      width: min(var(--max-width), 91%);
+      margin-inline: auto;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 12px;
+      z-index: 100;
+      background: var(--surface-2);
+      padding: 10px 14px;
+      border-radius: 8px;
+    }
+
+    .skip-link:focus {
+      top: 12px;
     }
 
     header {
-      padding: 22px 0;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(10,9,17,.88);
       border-bottom: 1px solid var(--border);
-      background: rgba(9,9,15,.8);
+      backdrop-filter: blur(16px);
     }
 
-    nav {
+    .navbar {
+      min-height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 15px;
-      flex-wrap: wrap;
+      gap: 22px;
     }
 
     .logo {
-      font-size: 25px;
+      font-size: 1.45rem;
       font-weight: 900;
-      letter-spacing: -1px;
+      letter-spacing: -.8px;
+      white-space: nowrap;
     }
 
     .logo span {
-      color: var(--purple);
+      background: var(--gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
     }
 
     .nav-links {
       display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 25px;
       color: var(--muted);
-      font-size: 14px;
+      font-size: .92rem;
     }
 
     .nav-links a:hover {
@@ -83,218 +145,331 @@
 
     .hero {
       text-align: center;
-      padding: 85px 0 65px;
+      padding: clamp(72px, 11vw, 130px) 0 85px;
     }
 
-    .tag {
-      display: inline-block;
-      border: 1px solid #6943a5;
-      color: #d7baff;
-      background: rgba(155,92,255,.12);
-      border-radius: 30px;
-      padding: 6px 15px;
-      font-size: 13px;
-      margin-bottom: 20px;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      border: 1px solid rgba(165,106,255,.4);
+      border-radius: 999px;
+      background: rgba(165,106,255,.09);
+      color: #ddc4ff;
+      font-size: .78rem;
+      font-weight: 750;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
     }
 
     h1 {
-      font-size: clamp(38px, 7vw, 72px);
-      line-height: 1.08;
-      letter-spacing: -2px;
-      margin-bottom: 22px;
+      max-width: 900px;
+      margin: 25px auto 20px;
+      font-size: clamp(2.6rem, 7.5vw, 5.6rem);
+      line-height: 1.04;
+      letter-spacing: -.065em;
     }
 
-    h1 span {
-      background: linear-gradient(90deg, var(--purple), var(--pink));
+    .gradient-text {
+      background: var(--gradient);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
     }
 
-    .hero p {
-      max-width: 650px;
-      margin: auto;
+    .hero-description {
+      max-width: 670px;
+      margin: 0 auto;
       color: var(--muted);
-      font-size: 17px;
+      font-size: clamp(1rem, 2vw, 1.15rem);
     }
 
-    .buttons {
+    .actions {
       display: flex;
-      justify-content: center;
-      gap: 12px;
       flex-wrap: wrap;
+      justify-content: center;
+      gap: 13px;
       margin-top: 30px;
     }
 
     .btn {
-      display: inline-block;
-      padding: 12px 21px;
-      border-radius: 10px;
-      background: linear-gradient(110deg, var(--purple), var(--pink));
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 12px 20px;
+      border: 1px solid transparent;
+      border-radius: 11px;
+      background: var(--gradient);
       color: white;
-      font-weight: bold;
-      border: 0;
+      font-weight: 750;
       cursor: pointer;
-      transition: transform .2s, opacity .2s;
+      transition: transform .2s, filter .2s, border-color .2s;
     }
 
     .btn:hover {
       transform: translateY(-2px);
-      opacity: .9;
+      filter: brightness(1.08);
     }
 
-    .btn-outline {
-      border: 1px solid var(--border);
-      background: var(--card);
+    .btn-secondary {
+      background: var(--surface-2);
+      border-color: var(--border);
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 25px;
+      margin-top: 35px;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .trust-row span::before {
+      content: "✦";
+      color: var(--purple);
+      margin-right: 8px;
     }
 
     section {
-      padding: 48px 0;
+      padding: 76px 0;
     }
 
-    .section-title {
+    .section-heading {
       text-align: center;
-      font-size: 32px;
-      margin-bottom: 10px;
+      max-width: 720px;
+      margin: 0 auto 38px;
     }
 
-    .section-subtitle {
-      text-align: center;
+    .section-heading h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      line-height: 1.2;
+      letter-spacing: -.04em;
+    }
+
+    .section-heading p {
+      margin: 0;
       color: var(--muted);
-      margin-bottom: 32px;
     }
 
-    .grid {
+    .products {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
     }
 
     .product {
-      padding: 24px;
-      background: linear-gradient(145deg, #171522, #101019);
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      padding: 23px;
       border: 1px solid var(--border);
-      border-radius: 17px;
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, #191726, #100f18);
       transition: transform .2s, border-color .2s;
     }
 
     .product:hover {
       transform: translateY(-5px);
-      border-color: var(--purple);
+      border-color: rgba(165,106,255,.7);
     }
 
     .product-icon {
-      font-size: 38px;
-      margin-bottom: 12px;
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(165,106,255,.3);
+      border-radius: 15px;
+      background: rgba(165,106,255,.12);
+      font-size: 1.6rem;
     }
 
     .product h3 {
-      font-size: 20px;
-      margin-bottom: 7px;
+      margin: 0 0 8px;
+      font-size: 1.12rem;
     }
 
     .product p {
+      flex: 1;
+      margin: 0;
       color: var(--muted);
-      font-size: 14px;
-      min-height: 45px;
+      font-size: .91rem;
     }
 
     .price {
-      font-size: 25px;
-      font-weight: bold;
-      margin: 18px 0;
+      margin: 20px 0;
+      font-size: 1.5rem;
+      font-weight: 850;
     }
 
     .price small {
-      font-size: 12px;
+      display: block;
+      margin-top: 2px;
       color: var(--muted);
-      font-weight: normal;
+      font-size: .75rem;
+      font-weight: 400;
     }
 
     .product .btn {
       width: 100%;
-      text-align: center;
     }
 
-    .about {
-      text-align: center;
+    .about-section {
+      border-block: 1px solid var(--border);
       background: rgba(255,255,255,.025);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
     }
 
-    .about p {
+    .about-content {
+      max-width: 780px;
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .about-content p {
       color: var(--muted);
-      max-width: 700px;
-      margin: 0 auto 22px;
     }
 
-    .socials {
+    .social-links {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       gap: 12px;
-      flex-wrap: wrap;
+      margin-top: 25px;
     }
 
-    .socials a {
+    .social-links a {
+      padding: 11px 17px;
       border: 1px solid var(--border);
-      background: var(--card);
       border-radius: 10px;
-      padding: 12px 17px;
+      background: var(--surface);
+      transition: border-color .2s;
     }
 
-    .socials a:hover {
+    .social-links a:hover {
       border-color: var(--pink);
     }
 
-    footer {
+    .contact-card {
+      max-width: 750px;
+      margin-inline: auto;
+      padding: clamp(25px, 5vw, 48px);
       text-align: center;
-      padding: 30px 0 100px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background:
+        radial-gradient(ellipse at top, rgba(165,106,255,.15), transparent 65%),
+        var(--surface);
+    }
+
+    .contact-card h2 {
+      margin-top: 0;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.2;
+    }
+
+    .contact-card p {
       color: var(--muted);
-      font-size: 13px;
+    }
+
+    footer {
+      padding: 32px 0 100px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .85rem;
+      text-align: center;
     }
 
     .music-player {
       position: fixed;
       bottom: 15px;
       left: 15px;
-      z-index: 10;
+      z-index: 30;
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 10px;
-      background: #171522;
-      border: 1px solid #6943a5;
-      border-radius: 13px;
-      box-shadow: 0 8px 30px #0008;
+      max-width: calc(100vw - 30px);
+      padding: 9px;
+      border: 1px solid rgba(165,106,255,.55);
+      border-radius: 14px;
+      background: rgba(19,17,29,.96);
+      box-shadow: 0 8px 30px rgba(0,0,0,.4);
+      backdrop-filter: blur(12px);
+    }
+
+    .music-label {
+      padding-left: 5px;
+      color: var(--muted);
+      font-size: .78rem;
+      white-space: nowrap;
     }
 
     .music-player button {
-      padding: 8px 10px;
-      border-radius: 8px;
+      min-height: 36px;
+      padding: 7px 10px;
       border: 0;
-      background: linear-gradient(110deg, var(--purple), var(--pink));
+      border-radius: 9px;
+      background: var(--gradient);
       color: white;
-      font-weight: bold;
+      font-size: .8rem;
+      font-weight: 750;
       cursor: pointer;
-    }
-
-    .music-player span {
-      font-size: 12px;
-      color: var(--muted);
     }
 
     #mp3File {
       display: none;
     }
 
-    @media (max-width: 600px) {
-      .hero {
-        padding-top: 60px;
+    .notice {
+      min-height: 1.4em;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    @media (max-width: 900px) {
+      .products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .navbar {
+        flex-wrap: wrap;
+        padding-block: 15px;
       }
 
       .nav-links {
-        gap: 12px;
+        justify-content: flex-start;
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .product {
+        padding: 22px;
+      }
+
+      .nav-links {
+        width: 100%;
+        font-size: .85rem;
+        gap: 13px;
+      }
+
+      .hero {
+        padding-top: 65px;
+      }
+
+      section {
+        padding: 58px 0;
       }
 
       .music-player {
@@ -303,135 +478,172 @@
         gap: 5px;
       }
 
-      .music-player button {
-        padding: 8px;
+      .music-label {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
       }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="container">
-      <nav>
-        <a href="#" class="logo">Matrys<span>Arts.</span></a>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-        <div class="nav-links">
-          <a href="#inicio">Início</a>
-          <a href="#loja">Loja</a>
-          <a href="#sobre">Sobre</a>
-          <a href="#contato">Contato</a>
-        </div>
+  <header>
+    <div class="container navbar">
+      <a class="logo" href="#inicio" aria-label="MatrysArts, página inicial">
+        Matrys<span>Arts.</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="#inicio">Início</a>
+        <a href="#loja">Catálogo</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
       </nav>
     </div>
   </header>
 
-  <main>
+  <main id="conteudo">
     <section class="hero" id="inicio">
       <div class="container">
-        <span class="tag">✦ ESTÚDIO DE ARTES DIGITAIS ✦</span>
+        <span class="eyebrow">✦ Estúdio de artes digitais</span>
 
-        <h1>Transforme sua ideia<br>em uma arte <span>única.</span></h1>
+        <h1>
+          Sua ideia.<br>
+          Sua identidade.<br>
+          <span class="gradient-text">Sua arte.</span>
+        </h1>
 
-        <p>
-          Perfis, brasões, banners e capas com identidade visual marcante.
-          Escolha sua arte e faça seu pedido diretamente pelo WhatsApp.
+        <p class="hero-description">
+          Artes digitais personalizadas para destacar seu perfil.
+          Escolha um serviço, envie sua ideia e converse conosco
+          para combinar os detalhes do pedido.
         </p>
 
-        <div class="buttons">
-          <a class="btn" href="#loja">✦ Ver catálogo</a>
-          <a class="btn btn-outline"
+        <div class="actions">
+          <a class="btn" href="#loja">✦ Explorar catálogo</a>
+          <a class="btn btn-secondary"
              href="https://www.instagram.com/matrysarts01/"
              target="_blank" rel="noopener noreferrer">
-            Instagram ↗
+            Ver Instagram ↗
           </a>
+        </div>
+
+        <div class="trust-row">
+          <span>Design personalizado</span>
+          <span>Atendimento direto</span>
+          <span>Artes digitais</span>
         </div>
       </div>
     </section>
 
     <section id="loja">
       <div class="container">
-        <h2 class="section-title">Nosso catálogo</h2>
-        <p class="section-subtitle">
-          Escolha seu produto e solicite um orçamento.
-        </p>
+        <div class="section-heading">
+          <h2>Encontre sua próxima arte</h2>
+          <p>Escolha um serviço para iniciar seu pedido.</p>
+        </div>
 
-        <div class="grid">
+        <div class="products">
           <article class="product">
-            <div class="product-icon">🎭</div>
+            <div class="product-icon" aria-hidden="true">🎭</div>
             <h3>Foto de perfil</h3>
-            <p>Uma identidade visual exclusiva para suas redes sociais.</p>
+            <p>Uma arte personalizada para sua identidade nas redes sociais.</p>
             <div class="price">R$ 10,00</div>
-            <a class="btn" href="#" onclick="pedir('Foto de perfil', '10,00'); return false;">
-              Fazer pedido
-            </a>
+            <button class="btn" type="button"
+              data-product="Foto de perfil" data-price="R$ 10,00">
+              Solicitar arte
+            </button>
           </article>
 
           <article class="product">
-            <div class="product-icon">🛡️</div>
+            <div class="product-icon" aria-hidden="true">🛡️</div>
             <h3>Brasão</h3>
-            <p>Design personalizado para grupos, equipes e projetos.</p>
+            <p>Design exclusivo para grupos, equipes e projetos.</p>
             <div class="price">R$ 25,00</div>
-            <a class="btn" href="#" onclick="pedir('Brasão', '25,00'); return false;">
-              Fazer pedido
-            </a>
+            <button class="btn" type="button"
+              data-product="Brasão" data-price="R$ 25,00">
+              Solicitar arte
+            </button>
           </article>
 
           <article class="product">
-            <div class="product-icon">🖼️</div>
+            <div class="product-icon" aria-hidden="true">🖼️</div>
             <h3>Banner ou capa</h3>
-            <p>Artes digitais para perfis, canais e páginas.</p>
+            <p>Uma composição visual para seu perfil, canal ou página.</p>
             <div class="price">R$ 20,00</div>
-            <a class="btn" href="#" onclick="pedir('Banner ou capa', '20,00'); return false;">
-              Fazer pedido
-            </a>
+            <button class="btn" type="button"
+              data-product="Banner ou capa" data-price="R$ 20,00">
+              Solicitar arte
+            </button>
           </article>
 
           <article class="product">
-            <div class="product-icon">💎</div>
+            <div class="product-icon" aria-hidden="true">💎</div>
             <h3>Kit personalizado</h3>
-            <p>Combine artes para criar uma identidade completa.</p>
-            <div class="price">A partir de R$ 25 <small>consulte opções</small></div>
-            <a class="btn" href="#" onclick="pedir('Kit personalizado', 'sob consulta'); return false;">
-              Consultar kit
-            </a>
+            <p>Combine diferentes artes para criar uma identidade visual.</p>
+            <div class="price">A partir de R$ 25,00
+              <small>Valor final conforme o kit escolhido</small>
+            </div>
+            <button class="btn" type="button"
+              data-product="Kit personalizado" data-price="a combinar">
+              Consultar opções
+            </button>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="about" id="sobre">
-      <div class="container">
-        <h2 class="section-title">Sobre a MatrysArts</h2>
+    <section class="about-section" id="sobre">
+      <div class="container about-content">
+        <div class="section-heading">
+          <h2>Sobre a <span class="gradient-text">MatrysArts</span></h2>
+        </div>
+
         <p>
-          Criamos artes digitais com estilo, personalidade e atenção aos
-          detalhes. Entre em contato para explicar sua ideia e combinar os
-          detalhes do pedido.
+          A MatrysArts cria artes digitais com personalidade e estilo.
+          Conte sua ideia, escolha o tipo de arte e combine o projeto
+          diretamente com nosso atendimento.
         </p>
 
-        <div class="socials">
+        <div class="social-links">
           <a href="https://www.instagram.com/matrysarts01/"
-             target="_blank" rel="noopener noreferrer">📸 Instagram</a>
-
+             target="_blank" rel="noopener noreferrer">
+            📸 Instagram
+          </a>
           <a href="https://www.tiktok.com/"
-             target="_blank" rel="noopener noreferrer">🎵 TikTok</a>
-
-          <a href="#contato">💬 Atendimento</a>
+             target="_blank" rel="noopener noreferrer">
+            🎵 TikTok
+          </a>
         </div>
       </div>
     </section>
 
     <section id="contato">
       <div class="container">
-        <h2 class="section-title">Vamos criar sua arte?</h2>
-        <p class="section-subtitle">
-          Fale conosco para combinar seu pedido e a forma de pagamento.
-        </p>
+        <div class="contact-card">
+          <span class="eyebrow">Vamos criar algo especial?</span>
+          <h2>Seu próximo projeto começa aqui.</h2>
+          <p>
+            Entre em contato para tirar dúvidas, consultar os kits
+            e combinar seu pedido.
+          </p>
 
-        <div class="buttons">
-          <a class="btn" href="#" onclick="contato(); return false;">
-            💬 Falar pelo WhatsApp
-          </a>
+          <div class="actions">
+            <button class="btn" id="contactButton" type="button">
+              💬 Falar pelo WhatsApp
+            </button>
+          </div>
+
+          <p class="notice" id="contactNotice" role="status"></p>
         </div>
       </div>
     </section>
@@ -443,94 +655,114 @@
     </div>
   </footer>
 
-  <div class="music-player">
-    <span>🎵 Música</span>
-    <button id="musicToggle" type="button">▶ Tocar</button>
-    <button id="musicSelect" type="button">MP3</button>
-    <input id="mp3File" type="file" accept="audio/mpeg,audio/mp3,audio/*">
-  </div>
-
-  <audio id="music" loop preload="none"></audio>
+  <aside class="music-player" aria-label="Controle de música">
+    <span class="music-label">🎵 Música</span>
+    <button id="musicToggle" type="button" aria-pressed="false">
+      ▶ Tocar
+    </button>
+    <button id="musicSelect" type="button">Escolher MP3</button>
+    <input id="mp3File" type="file" accept="audio/*"
+      aria-label="Escolher arquivo de música">
+    <audio id="music" loop preload="none"></audio>
+  </aside>
 
   <script>
-    // IMPORTANTE: coloque seu número com código do país e DDD.
-    // Exemplo de formato: 55 + DDD + número, somente dígitos.
+    "use strict";
+
+    /*
+      CONFIGURAÇÃO:
+      Preencha com seu número brasileiro, incluindo 55 + DDD + número.
+      Use apenas números, sem +, espaços ou traços.
+      Exemplo de formato: 5511999999999
+    */
     const WHATSAPP_NUMBER = "SEUNUMERO";
+
+    const yearElement = document.getElementById("year");
+    const contactButton = document.getElementById("contactButton");
+    const contactNotice = document.getElementById("contactNotice");
 
     const music = document.getElementById("music");
     const musicToggle = document.getElementById("musicToggle");
     const musicSelect = document.getElementById("musicSelect");
     const mp3File = document.getElementById("mp3File");
 
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
+    yearElement.textContent = new Date().getFullYear();
 
-    function abrirWhatsApp(texto) {
-      if (!/^\d{12,13}$/.test(WHATSAPP_NUMBER)) {
-        alert("Configure seu número do WhatsApp no código do site.");
+    function openWhatsApp(message) {
+      const number = WHATSAPP_NUMBER.replace(/\D/g, "");
+
+      if (!/^\d{12,13}$/.test(number)) {
+        contactNotice.textContent =
+          "Configure seu número do WhatsApp no código antes de receber pedidos.";
         return;
       }
 
       const url =
-        "https://wa.me/" + WHATSAPP_NUMBER +
-        "?text=" + encodeURIComponent(texto);
+        "https://wa.me/" + number +
+        "?text=" + encodeURIComponent(message);
 
       window.open(url, "_blank", "noopener,noreferrer");
     }
 
-    function pedir(produto, preco) {
-      abrirWhatsApp(
-        "Olá! Quero pedir: " + produto +
-        ". Valor anunciado: R$ " + preco +
-        ". Como faço para continuar?"
+    document.querySelectorAll("[data-product]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const product = button.dataset.product;
+        const price = button.dataset.price;
+
+        openWhatsApp(
+          "Olá! Vim pelo site MatrysArts e gostaria de solicitar: " +
+          product + ". Valor anunciado: " + price +
+          ". Poderia me explicar como continuar?"
+        );
+      });
+    });
+
+    contactButton.addEventListener("click", () => {
+      openWhatsApp(
+        "Olá! Vim pelo site MatrysArts e gostaria de informações sobre as artes."
       );
-    }
+    });
 
-    function contato() {
-      abrirWhatsApp("Olá! Vim pelo site MatrysArts e quero informações.");
-    }
-
-    // Tenta carregar a música publicada no repositório.
-    // Para GitHub Pages em /meus-links/, este caminho relativo
-    // procura a música dentro de public/music/ a partir da raiz.
+    /*
+      Música publicada:
+      coloque o arquivo em public/music/musica.mp3.
+      Este caminho funciona quando o site está publicado na raiz
+      do repositório e o arquivo está realmente nesse local.
+    */
     music.src = "./public/music/musica.mp3";
+
+    function updateMusicButton() {
+      const playing = !music.paused;
+      musicToggle.textContent = playing ? "⏸ Pausar" : "▶ Tocar";
+      musicToggle.setAttribute("aria-pressed", String(playing));
+    }
 
     musicToggle.addEventListener("click", async () => {
       try {
         if (music.paused) {
           await music.play();
-          musicToggle.textContent = "⏸ Pausar";
         } else {
           music.pause();
-          musicToggle.textContent = "▶ Tocar";
         }
       } catch {
-        alert(
-          "Não foi possível tocar a música. Confira se o arquivo " +
-          "public/music/musica.mp3 foi enviado ao GitHub."
-        );
+        contactNotice.textContent =
+          "Não foi possível tocar a música. Confira o caminho do MP3 ou escolha um arquivo do computador.";
       }
+
+      updateMusicButton();
     });
 
-    music.addEventListener("ended", () => {
-      musicToggle.textContent = "▶ Tocar";
-    });
-
-    music.addEventListener("pause", () => {
-      musicToggle.textContent = "▶ Tocar";
-    });
-
-    music.addEventListener("play", () => {
-      musicToggle.textContent = "⏸ Pausar";
-    });
-
-    // Permite selecionar um MP3 do computador para esta sessão.
     musicSelect.addEventListener("click", () => mp3File.click());
 
     mp3File.addEventListener("change", () => {
       const file = mp3File.files && mp3File.files[0];
 
       if (!file) return;
+
+      if (!file.type.startsWith("audio/")) {
+        contactNotice.textContent = "Escolha um arquivo de áudio válido.";
+        return;
+      }
 
       if (music.dataset.localUrl) {
         URL.revokeObjectURL(music.dataset.localUrl);
@@ -539,9 +771,24 @@
       const localUrl = URL.createObjectURL(file);
       music.dataset.localUrl = localUrl;
       music.src = localUrl;
-      music.play().catch(() => {
-        alert("Clique em Tocar para iniciar a música.");
-      });
+
+      music.play()
+        .then(updateMusicButton)
+        .catch(() => {
+          contactNotice.textContent =
+            "Arquivo selecionado. Clique em Tocar para iniciar a música.";
+          updateMusicButton();
+        });
+    });
+
+    music.addEventListener("play", updateMusicButton);
+    music.addEventListener("pause", updateMusicButton);
+    music.addEventListener("ended", updateMusicButton);
+
+    window.addEventListener("beforeunload", () => {
+      if (music.dataset.localUrl) {
+        URL.revokeObjectURL(music.dataset.localUrl);
+      }
     });
   </script>
 </body>
